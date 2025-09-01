@@ -48,6 +48,7 @@ public class UserService {
         request.setImgUrl(imgUrl);
 
         userRepo.save(request);
+        System.out.println("User Register");
 
         return "User registered successfully!";
     }
