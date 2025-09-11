@@ -2,6 +2,8 @@ package com.resumate.resumate_backend.Controller;
 
 import com.resumate.resumate_backend.Model.User;
 import com.resumate.resumate_backend.Service.UserService;
+import com.resumate.resumate_backend.utility.LoginRequest;
+import com.resumate.resumate_backend.utility.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +46,23 @@ public class UserController {
         if(res.equals("User deleted successfully"))
             return ResponseEntity.ok().body(res);
         return ResponseEntity.badRequest().body(res);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest req){
+        try {
+            LoginResponse response = userService.login(req.getEmail(), req.getPassword());
+            if(response.isSuccess()){
+                return ResponseEntity.ok(response);
+            }
+            return ResponseEntity.badRequest().body(
+                    response
+            );
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(
+                    new LoginResponse()
+            );
+        }
     }
 
 
