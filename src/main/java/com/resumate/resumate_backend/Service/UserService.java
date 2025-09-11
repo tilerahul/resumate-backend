@@ -83,14 +83,12 @@ public class UserService {
 
 
         if(passwordEncoder.matches(password, user.get().getPassword())){
-//            System.out.println("_____________________________________________________________");
-//            System.out.println("-->"+JWTutil.SECRET_KEY);
-//            String token = jwtUtil.generateToken(user.get().getId(), user.get().getIsAdmin());
-//            System.out.println("------------------------------>"+token);
+            String token = JWTutil .generateToken(user.get().getEmail(), user.get().getIsAdmin());
+            System.out.println("------------------"+token);
             res.setSuccess(true);
             res.setMessage("User Login Successful !!");
             res.setUser(user.get());
-            res.setToken("token");
+            res.setToken(token);
             return res;
         }else{
             res.setMessage("Invalid Credentials !!");
