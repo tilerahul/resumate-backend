@@ -27,8 +27,8 @@ public class JWTutil {
     }
 
     public static String generateToken(String userId, Boolean isAdmin) {
-        System.out.print("userID : "+userId);
-        System.out.print("admin : "+isAdmin);
+//        System.out.print("userID : "+userId);
+//        System.out.print("admin : "+isAdmin);
 
         return Jwts.builder()
                 .claim("userId", userId)

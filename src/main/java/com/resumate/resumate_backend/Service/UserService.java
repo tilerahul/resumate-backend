@@ -84,7 +84,7 @@ public class UserService {
 
         if(passwordEncoder.matches(password, user.get().getPassword())){
             String token = JWTutil .generateToken(user.get().getEmail(), user.get().getIsAdmin());
-            System.out.println("------------------"+token);
+            //System.out.println("------------------"+token);
             res.setSuccess(true);
             res.setMessage("User Login Successful !!");
             res.setUser(user.get());
